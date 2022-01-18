@@ -9,7 +9,7 @@ docker image build -t practice/my_flask:latest .
 docker container run -it --rm -p 5050:5050 -v ${PWD}:/usr/src/app --name myflask practice/my_flask:latest
 ```
 - localhost:5050をポートフォワーディング
-- カレンとディレクトリに/usr/src/appをVolumeマウント
+- カレントディレクトリに/usr/src/appをVolumeマウント
 - exit時にコンテナ削除
 
 <br>
