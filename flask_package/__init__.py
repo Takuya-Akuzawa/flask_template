@@ -2,10 +2,13 @@ import os
 
 from flask import Flask
 
-from flask_package.models import init_db
-from flask_package.models.user import User
-from flask_package.views import views
 from flask_package.config import init_config
+from flask_package.models import init_db
+# modelクラスを以下にimport
+from flask_package.models.user import User
+# viewのBlueprintを以下にimport
+from flask_package.views import views
+
 
 app = Flask(__name__, instance_relative_config=True)
 

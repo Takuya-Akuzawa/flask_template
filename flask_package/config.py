@@ -22,10 +22,9 @@ def init_config(app):
     """
     flask_app_env = os.getenv('FLASK_APP_ENV', 'production')
     config_type = {
-        "development":  "app.config.Development",
-        "production": "app.config.Production"
+        "development":  "flask_package.config.Development",
+        "production": "flask_package.config.Production"
         # appパッケージ > configモジュール > Developmentコンポーネント(クラス)を読み込む
     }
     app.config.from_object(config_type.get(flask_app_env))
-
     return

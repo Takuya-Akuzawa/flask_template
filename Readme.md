@@ -1,4 +1,11 @@
+# 本リポジトリについて
+- Flaskアプリケーションの雛形ファイルをflask_packageとして保存・再利用する
+- Flaskアプリ構築用のDocker開発環境をセットアップする
+
+<br>
+
 ## Docker環境構築手順
+---
 Dockerfileがあるディレクトリで実行
 1. コンテナイメージのビルド
 ```
@@ -14,6 +21,21 @@ docker container run -it --rm -p 5050:5050 -v ${PWD}:/usr/src/app --name myflask
 
 <br>
 
+## パッケージ構造
+```
+flask_package/
+├── __init__.py
+├── config.py
+├── models
+│   ├── __init__.py
+│   └── user.py
+├── templates
+│   └── index.html
+└── views.py
+```
+
+<br>
+
 ## 環境変数について
 ```
 export FLASK_APP_ENV=development
@@ -25,8 +47,18 @@ app/__init__.pyでFlask()が生成されている。
 
 <br>
 
+## Flask-MigrateでDBテーブル作成
+- config.pyでDB接続先を設定
+- flask_packageの存在するディレクトリから実行
+```
+flask db init
+flask db migrate -m "Initial migration"
+flask db upgrade
+```
 
-## 実行方法
+<br>
+
+## Flaskアプリ実行方法
 flask_packageの存在するディレクトリからflask run を実行
 ```
 flask run -h 0.0.0.0 -p 5050
@@ -36,7 +68,7 @@ flask run -h 0.0.0.0 -p 5050
 <br>
 
 ## ローカル環境設定
-VSCodeでの静的解析用にvenv作成
+VSCodeでの静的解析用にPython仮想環境を作成し、各種ライブラリをインストールする。
 - pyenvでバージョンを変更
 ```
 pyenv global 3.7.10
