@@ -6,7 +6,7 @@ import string
 class Development(object):
     DEBUG = True
     SECRET_KEY = "".join([choice(string.ascii_letters + string.digits + '_' + '-' + '!' + '#' + '&') for i in range(64)])
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///myflask.db'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///sqlite_flask.db'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ECHO = False
 

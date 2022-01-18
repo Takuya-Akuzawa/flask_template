@@ -59,12 +59,26 @@ flask db upgrade
 <br>
 
 ## Flaskアプリ実行方法
-flask_packageの存在するディレクトリからflask run を実行
+flask_packageの存在するディレクトリから実行する。
+- flask run で実行
 ```
 flask run -h 0.0.0.0 -p 5050
 ```
 ※ Dockerで設定したポート番号で起動する。
 
+<br>
+
+- gunicornで実行
+```
+gunicorn flask_package:app -c gunicorn_settings.py
+```
+
+<br>
+
+- uWSGIで実行
+```
+uwsgi uwsgi.ini
+```
 <br>
 
 ## ローカル環境設定

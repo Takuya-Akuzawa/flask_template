@@ -35,5 +35,6 @@ SQLAlchemy==1.4.28
 toml==0.10.2
 typing_extensions==4.0.1
 urllib3==1.26.8
+uWSGI==2.0.20
 Werkzeug==2.0.2
 zipp==3.6.0
