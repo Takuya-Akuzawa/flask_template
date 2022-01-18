@@ -132,4 +132,4 @@ dmypy.json
 instance/
 
 # sqliteのdbファイルを除外 
-flask_package/*.db
+./flask_package/*.db
