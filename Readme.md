@@ -38,8 +38,8 @@ flask_package/
 
 ## 環境変数について
 ```
-export FLASK_APP_ENV=development
-export FLASK_APP=flask_package:app
+FLASK_APP_ENV=development
+FLASK_APP=flask_package:app
 ```
 flask_packageのappコンポーネント(Flaskインスタンス)を実行するという意味。
 
