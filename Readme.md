@@ -23,14 +23,20 @@ docker container run -it --rm -p 5050:5050 -v ${PWD}:/usr/src/app --name myflask
 
 ## パッケージ構造
 ```
-flask_package/
+flask_package
+├── log
+├── static
+│   └── main.css
+├── templates
+│   ├── base.html
+│   ├── error_page.html
+│   ├── flash_message.html
+│   └── index.html
 ├── __init__.py
 ├── config.py
 ├── models
 │   ├── __init__.py
 │   └── user.py
-├── templates
-│   └── index.html
 └── views.py
 ```
 
