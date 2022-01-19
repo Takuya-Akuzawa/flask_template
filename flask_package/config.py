@@ -96,3 +96,12 @@ class Development(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ECHO = False
 
+
+class Production(object):
+    """production用の環境変数設定クラス"""
+    DEBUG = False
+    SECRET_KEY = "".join([choice(string.ascii_letters + string.digits +
+                         '_' + '-' + '!' + '#' + '&') for i in range(64)])
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///sqlite_flask.db'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_ECHO = False
