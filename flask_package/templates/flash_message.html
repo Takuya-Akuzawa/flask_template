@@ -1,0 +1,22 @@
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<section class="container">
+  {% for category, message in messages %}
+  <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+    {% if category == 'success' %}
+    {% set icon = '#check-circle-fill' %}
+    {% elif category == 'warning' %}
+    {% set icon = '#exclamation-triangle-fill' %}
+    {% else %}
+    {% set icon = '#info-fill' %}
+    {% endif %}
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24">
+      <use xlink:href="{{ icon }}" />
+    </svg>
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endfor %}
+</section>
+{% endif %}
+{% endwith %}
