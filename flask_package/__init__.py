@@ -1,12 +1,22 @@
 import os
 
-from flask import Flask
+from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
 from flask_package.config import FlaskConfig
 
 db = SQLAlchemy()
+
+
+def page_not_found(e):
+    return render_template('error_page.html',
+                            code=e.code,
+                            title=e.name,
+                            messages={
+                                'lead': 'リクエストされたページが見つかりませんでした。',
+                                'description': e.description,}
+                            ), 404
 
 
 def create_app():
@@ -25,6 +35,8 @@ def create_app():
     register_blueprints(app)
     app.logger.info('Registered Blueprints')
     
+    app.register_error_handler(404, page_not_found) #type: ignore
+
     return app
 
 
