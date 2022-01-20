@@ -1,6 +1,4 @@
-from pydoc import plain
-from tabnanny import check
-from flask_package.models import db
+from flask_package import db
 
 from datetime import datetime
 

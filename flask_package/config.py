@@ -66,6 +66,7 @@ class FlaskConfig(object):
         dictConfig(cls.logging_property)
         return
 
+
     @classmethod
     def env_config(cls, app):
         """
