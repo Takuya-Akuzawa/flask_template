@@ -42,7 +42,7 @@ class User(db.Model): # type: ignore
     @staticmethod
     def _generate_password_hash(password_plaintext: str):
         return generate_password_hash(password_plaintext)
-
+                
     def set_password(self, password_plaintext: str):
         self.hashed_password = self._generate_password_hash(password_plaintext)
     

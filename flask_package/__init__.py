@@ -55,9 +55,9 @@ def register_blueprints(app):
     # Since the application instance is now created, register each Blueprint
     # with the Flask application instance (app)
     from flask_package.views import views
-    from flask_package.users import users_blueprint
+    from flask_package.auth import auth_blueprint
     
-    app.register_blueprint(users_blueprint)
+    app.register_blueprint(auth_blueprint)
     app.register_blueprint(views)
 
 
