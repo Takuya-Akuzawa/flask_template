@@ -3,11 +3,13 @@ import os
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_login import LoginManager
 
 from flask_package.config import FlaskConfig
 
 db = SQLAlchemy()
-
+login = LoginManager()
+login.login_view = 'auth.login' # type: ignore
 
 def page_not_found(e):
     return render_template('error_page.html',
@@ -47,8 +49,12 @@ def initialize_extensions(app):
     db.init_app(app)
     Migrate(app, db)
     # Flask-Login configuration
+    login.init_app(app)
     from flask_package.models import User
     
+    @login.user_loader
+    def load_user(user_id):
+        return User.query.filter(User.id == int(user_id)).first()
 
 
 def register_blueprints(app):
