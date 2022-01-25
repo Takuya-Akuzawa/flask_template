@@ -134,3 +134,6 @@ instance/
 # sqliteのdbファイルを除外 
 *.db
 migrations
+
+# VSCodeの設定ファイルを除外
+.vscode/
