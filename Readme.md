@@ -130,11 +130,9 @@ flask_packageの存在するディレクトリから実行する
 ```
 python -m pytest tests --cov --cov-report=term-missing -v
 
-# options
---cov-report=term-missing
+# other options
 --flakes
 --setup-show
--v
 ```
 
 
