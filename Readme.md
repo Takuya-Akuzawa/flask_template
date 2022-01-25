@@ -43,13 +43,14 @@ flask_package
 <br>
 
 ## 環境変数について
+
 ```
 FLASK_APP_ENV=development
-FLASK_APP=flask_package:app
+FLASK_APP="flask_package:create_app()"
 ```
-flask_packageのappコンポーネント(Flaskインスタンス)を実行するという意味。
+flask_packageのcreate_app()からFlaskインスタンスを生成し起動する。
 
-app/__init__.pyでFlask()が生成されている。
+※ `flask_package/__init__.py`でcreate_app()を定義。
 
 <br>
 
@@ -76,10 +77,10 @@ flask run -h 0.0.0.0 -p 5050
 
 - gunicornで実行
 ```
-gunicorn flask_package:app -c gunicorn_settings.py
+gunicorn -c gunicorn_settings.py
 ```
-
-<br>
+ 
+ <br>
 
 - uWSGIで実行
 ```
@@ -112,6 +113,19 @@ pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
+<br>
+
+## pytest実行
+flask_packageの存在するディレクトリから実行する
+```
+python -m pytest tests --cov --cov-report=term-missing -v
+
+# options
+--cov-report=term-missing
+--flakes
+--setup-show
+-v
+```
 
 
 

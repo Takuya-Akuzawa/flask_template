@@ -66,6 +66,7 @@ class FlaskConfig(object):
         dictConfig(cls.logging_property)
         return
 
+
     @classmethod
     def env_config(cls, app):
         """
@@ -95,6 +96,7 @@ class Development(object):
     SQLALCHEMY_DATABASE_URI = 'sqlite:///sqlite_flask.db'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ECHO = False
+    TESTING = True
 
 
 class Production(object):

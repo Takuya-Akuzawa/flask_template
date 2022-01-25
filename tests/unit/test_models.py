@@ -1,7 +1,7 @@
 """
 This file (test_models.py) contains the unit tests for the models.py file.
 """
-from flask_package.models.user import User 
+from flask_package.models import User 
 
 
 def test_new_user(new_user):
@@ -14,6 +14,10 @@ def test_new_user(new_user):
     assert new_user.user_name == 'test_user'
     assert new_user.hashed_password != 'Passw0rd'
     assert new_user.__repr__() == '<User: test_user, test_user@gmail.com>'
+    assert new_user.is_authenticated
+    assert new_user.is_active
+    assert not new_user.is_anonymous
+
 
 
 def test_set_password(new_user):
