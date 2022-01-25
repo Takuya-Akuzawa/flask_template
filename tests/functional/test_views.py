@@ -14,7 +14,7 @@ def test_index(test_client):
     """
     response = test_client.get('/')
     assert response.status_code == 200
-    assert b'Hello world' in response.data
+    assert b'Index' in response.data
 
 
 def test_page_not_found(test_client):
