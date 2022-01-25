@@ -9,6 +9,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 ENV TZ=Asia/Tokyo
 ENV FLASK_APP_ENV=development
-ENV FLASK_APP=flask_package:app
+ENV FLASK_APP="flask_package:create_app()"
 
 CMD ["/bin/bash"]
