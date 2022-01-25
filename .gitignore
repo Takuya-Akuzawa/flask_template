@@ -137,3 +137,4 @@ migrations
 
 # VSCodeの設定ファイルを除外
 .vscode/
+.devcontainer/
