@@ -60,10 +60,10 @@ def initialize_extensions(app):
 def register_blueprints(app):
     # Since the application instance is now created, register each Blueprint
     # with the Flask application instance (app)
-    from flask_package.views import views
+    from flask_package.view_sample.routes import views_blueprint
     from flask_package.auth import auth_blueprint
     
     app.register_blueprint(auth_blueprint)
-    app.register_blueprint(views)
+    app.register_blueprint(views_blueprint)
 
 
