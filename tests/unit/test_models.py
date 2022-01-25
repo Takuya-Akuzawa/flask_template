@@ -1,7 +1,6 @@
 """
 This file (test_models.py) contains the unit tests for the models.py file.
 """
-from flask_package.models import User 
 
 
 def test_new_user(new_user):
