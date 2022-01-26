@@ -30,8 +30,10 @@ jobs:
           command: flask db init && flask db migrate && flask db upgrade
       - run:
           name: Execute pytest
-          command: python -m pytest tests 
+          command: python -m pytest tests --html=test-reports/pytest_report.html
       - store_test_results:
+          path: test-reports
+      - store_artifacts:
           path: test-reports
 
 # Invoke jobs via workflows
