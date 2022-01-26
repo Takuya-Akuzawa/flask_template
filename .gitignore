@@ -140,4 +140,4 @@ migrations
 .devcontainer/
 
 # pytest-htmlの出力結果を除隊
-.test-reports
+test-reports/
