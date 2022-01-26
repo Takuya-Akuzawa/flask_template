@@ -7,42 +7,35 @@ orbs:
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  build:
+  run_tests:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
-      - image: cimg/python:3.7
+      - image: cimg/python:3.7.12
+          environment:
+            FLASK_APP_ENV: 'development'
+            FLASK_APP: 'flask_package:create_app()'
     working_directory: ~/flask_template
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout:
           path: ~/flask_template
-      - run: pip install -r requirements.txt
-  test:
-    docker:
-      - image: cimg/python:3.7
-        environment:
-          FLASK_APP_ENV = 'development'
-          FLASK_APP = 'flask_package:create_app()'
-    working_directory: ~/flask_template
-    steps:
-      - checkout:
-          path: ~/flask_template
+      - run:
+          name: Install Python Libraries
+          command: pip install -r requirements.txt
       - run: 
           name: Database setup
           command: flask db init && flask db migrate && flask db upgrade
       - run:
-          name: execute pytest
+          name: Execute pytest
           command: python -m pytest tests 
+      - store_test_results:
+          path: test-reports
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  version: 2
   build_and_test:
     jobs:
-      - build
-      - test:
-        requires:
-          - build
+      - run_tests
