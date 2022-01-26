@@ -22,17 +22,18 @@ jobs:
     steps:
       - checkout:
           path: ~/flask_template
-      - run: |
-          # Install Libraries
-          pip install -r requirements.txt
-          # Migrate DB to Sqlite
-          flask db init && flask db migrate && flask db upgrade
-          # Execute pytetst
-          python -m pytest tests 
-            --cov --cov-report=term-missing
-            --junit-xml=test-reports/pytest_result.xml
-            --html=test-reports/pytest_report.html
-
+      - run:
+          name: Install Python Libraries
+          command: pip install -r requirements.txt
+      - run: 
+          name: Database setup
+          command: flask db init && flask db migrate && flask db upgrade
+      - run:
+          name: Execute pytest
+          command: python -m pytest tests -v
+                    --cov --cov-report=term-missing
+                    --junit-xml=test-reports/pytest_result.xml
+                    --html=test-reports/pytest_report.html
       - store_test_results:
           path: test-reports
       - store_artifacts:
