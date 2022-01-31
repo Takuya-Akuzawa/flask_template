@@ -7,7 +7,6 @@ from flask_package.models import User
 @pytest.fixture(scope='module')
 def test_client():
     flask_app = create_app()
-    flask_app.config['WTF_CSRF_ENABLED'] = False
     # Create a test client using the Flask application configured for testing
     with flask_app.test_client() as testing_client:
         # Establish an application context

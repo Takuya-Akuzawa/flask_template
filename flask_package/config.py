@@ -78,8 +78,9 @@ class FlaskConfig(object):
         Return:
             None
         """
-        flask_app_env = os.getenv('FLASK_APP_ENV', 'production')
+        flask_app_env = os.getenv('FLASK_APP_ENV', 'testing')
         config_type = {
+            "testing": "flask_package.config.Testing",
             "development":  "flask_package.config.Development",
             "production": "flask_package.config.Production"
             # flask_packageパッケージ > configモジュール > Developmentコンポーネント(クラス)を読み込む
@@ -87,6 +88,17 @@ class FlaskConfig(object):
         app.config.from_object(config_type.get(flask_app_env))
         return
 
+
+class Testing(object):
+    """test実行用の環境変数設定クラス"""
+    DEBUG = True
+    SECRET_KEY = "".join([choice(string.ascii_letters + string.digits +
+                         '_' + '-' + '!' + '#' + '&') for i in range(64)])
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_ECHO = False
+    TESTING = True
+    WTF_CSRF_ENABLED = False
 
 class Development(object):
     """development用の環境変数設定クラス"""
@@ -96,7 +108,6 @@ class Development(object):
     SQLALCHEMY_DATABASE_URI = 'sqlite:///sqlite_flask.db'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ECHO = False
-    TESTING = True
 
 
 class Production(object):
