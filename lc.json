@@ -1,0 +1,15 @@
+{
+    "serviceName": "flask-template",
+    "containers": {
+        "flask-template": {
+            "image": ":flask-template.latest.3",
+            "ports": {
+                "80": "HTTP"
+            }
+        }
+    },
+    "publicEndpoint": {
+        "containerName": "flask-template",
+        "containerPort": 80
+    }
+}
