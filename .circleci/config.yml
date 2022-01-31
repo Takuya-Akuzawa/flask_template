@@ -13,7 +13,7 @@ jobs:
     docker:
       - image: cimg/python:3.7.12
     environment: 
-      FLASK_APP_ENV: 'development'
+      FLASK_APP_ENV: 'testing'
       FLASK_APP: 'flask_package:create_app()'
 
     working_directory: ~/flask_template
