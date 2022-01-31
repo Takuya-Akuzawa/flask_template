@@ -141,3 +141,5 @@ migrations
 
 # pytest-htmlの出力結果を除隊
 test-reports/
+
+.pytest.ini.swp
