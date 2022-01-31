@@ -10,7 +10,7 @@ from flask_package import db
 from flask_package.models import User
 
 
-def test_login_to_logout(test_client):
+def test_login_to_logout(test_client, init_database):
     """
     GIVEN a existing user
     WHEN access to login page and login with valid keys, then logout
@@ -34,7 +34,7 @@ def test_login_to_logout(test_client):
     assert not current_user.is_authenticated # type: ignore
 
 
-def test_profile_not_logged_in(test_client):
+def test_profile_not_logged_in(test_client, init_database):
     """
     GIVEN
     WHEN requested profile page with no login
@@ -48,7 +48,7 @@ def test_profile_not_logged_in(test_client):
     assert b'Please log in' in response.data
 
 
-def test_login_already_logged_in(test_client):
+def test_login_already_logged_in(test_client, init_database):
     """
     GIVEN a existing user
     WHEN once logged in, and request login page again
@@ -75,7 +75,7 @@ def test_login_already_logged_in(test_client):
     assert not current_user.is_authenticated # type: ignore
 
 
-def test_invalid_login(test_client):
+def test_invalid_login(test_client, init_database):
     """
     GIVEN 
     WHEN a login request with no existing user, or invalid login keys
@@ -101,7 +101,7 @@ def test_invalid_login(test_client):
     assert not current_user.is_authenticated # type: ignore
 
 
-def test_valid_register(test_client):
+def test_valid_register(test_client, init_database):
     """
     GIVEN 
     WHEN access to register page and register with valid keys, then logout
@@ -133,7 +133,7 @@ def test_valid_register(test_client):
     db.session.commit()
 
 
-def test_invalid_register(test_client):
+def test_invalid_register(test_client, init_database):
     """
     GIVEN 
     WHEN register a new user with invalid email
@@ -151,7 +151,7 @@ def test_invalid_register(test_client):
     assert not current_user.is_authenticated # type: ignore
 
 
-def test_register_page_already_login(test_client):
+def test_register_page_already_login(test_client, init_database):
     """
     GIVEN a existing user
     WHEN once logged in, and request login page again
@@ -183,7 +183,7 @@ def test_register_page_already_login(test_client):
     db.session.commit()
 
 
-def test_register_already_exists(test_client):
+def test_register_already_exists(test_client, init_database):
     """
     GIVEN a existing user
     WHEN register a new user using a already registered email

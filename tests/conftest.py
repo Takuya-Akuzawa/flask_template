@@ -1,4 +1,5 @@
 import pytest
+
 from flask_package import create_app, db
 from flask_package.models import User
 
@@ -11,20 +12,22 @@ def test_client():
     with flask_app.test_client() as testing_client:
         # Establish an application context
         with flask_app.app_context():
-            user = User('test_user@gmail.com', 'test_user', 'aaaa')
-            db.session.add(user)
-            db.session.commit()
-
             yield testing_client  # this is where the testing happens!
-
-            user = User.query.filter_by(email='test_user@gmail.com').first()
-            db.session.delete(user)
-            db.session.commit()
 
 
 @pytest.fixture(scope='module')
-def new_user():
-    user = User('test_user@gmail.com', 'test_user', 'Passw0rd')
-    return user
+def init_database(test_client):
+    """
+    create a testing DB and testing user as setup
+    when tests is finished, remove the testing DB as teardown
+    """
+    db.create_all()
 
+    # create testing user
+    user = User('test_user@gmail.com', 'test_user', 'aaaa')
+    db.session.add(user)
+    db.session.commit()
+    
+    yield # where tests starting
 
+    db.drop_all()
